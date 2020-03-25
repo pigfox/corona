@@ -11,9 +11,9 @@ func main() {
 
 	for probability := float64(0.0); probability <= 100; probability += 5 {
 		percent := fmt.Sprintf("%0.2f", probability)
-		fmt.Println("With probability of:", percent, "%")
+		fmt.Print("With infection probability of:", percent, "%")
 
 		dead := fmt.Sprintf("%6.2f", population*probability/100*mortality)
-		fmt.Println("Number dead:", dead)
+		fmt.Println(" Number dead:", dead)
 	}
 }
