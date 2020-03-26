@@ -19,10 +19,10 @@ func main() {
 
 	fmt.Println("Average Mortality Rate:", mortalityPercent, "%")
 
-	fmt.Fprintf(w, "\n %s\t%s\t", "% Infection\nprobability", "#Dead")
+	fmt.Fprintf(w, "\n%s\t%s\t", "%Population\nInfection\nProbability", "Number Dead")
 
 	for probability := float64(0.0); probability <= 100; probability += 5 {
 		dead := population * probability / 100 * mortality
-		fmt.Fprintf(w, "\n %0.2f\t%6.0f\t", probability, dead)
+		fmt.Fprintf(w, "\n%0.2f\t%6.0f\t", probability, dead)
 	}
 }
