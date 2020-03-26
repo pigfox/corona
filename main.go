@@ -7,7 +7,10 @@ import (
 )
 
 func main() {
+	//Assumed average mortality rate
 	mortality := 0.05
+
+	//Victim population
 	population := float64(327e6)
 
 	w := new(tabwriter.Writer)
@@ -21,6 +24,7 @@ func main() {
 
 	fmt.Fprintf(w, "\n%s\t%s\t", "%Population\nInfection\nProbability", "Number Dead")
 
+	//Iterate over probabilities to calculate number of dead
 	for probability := float64(0.0); probability <= 100; probability += 5 {
 		dead := population * probability / 100 * mortality
 		fmt.Fprintf(w, "\n%0.2f\t%6.0f\t", probability, dead)
