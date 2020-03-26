@@ -21,7 +21,7 @@ func main() {
 	defer w.Flush()
 
 	fmt.Println("Population:", fmt.Sprintf("%6.0f", population))
-	mortalityPercent := fmt.Sprintf("%0.0f", mortality*100)
+	mortalityPercent := fmt.Sprintf("%0.2f", mortality*100)
 
 	fmt.Println("Average Mortality Rate:", mortalityPercent, "%")
 
@@ -30,6 +30,6 @@ func main() {
 	//Iterate over probabilities to calculate number of dead
 	for probability := float64(0.0); probability <= 100; probability += 5 {
 		dead := population * probability / 100 * mortality
-		fmt.Fprintf(w, "\n%0.2f\t%s\t%6.0f\t", probability, " | ", dead)
+		fmt.Fprintf(w, "\n%2.f\t%s\t%9.f\t", probability, " | ", dead)
 	}
 }
