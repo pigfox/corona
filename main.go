@@ -8,16 +8,19 @@ import (
 
 func main() {
 	//Assumed average mortality rate
-	mortality := 0.05
+	mortality := 0.013
 
-	//Victim population
+	//US population
 	population := float64(327e6)
+
+	//African/Middle East/Asia
+	//population := float64(1e9)
 
 	w := new(tabwriter.Writer)
 	w.Init(os.Stdout, 8, 8, 0, '\t', 0)
 	defer w.Flush()
 
-	fmt.Println("US Population:", fmt.Sprintf("%6.0f", population))
+	fmt.Println("Population:", fmt.Sprintf("%6.0f", population))
 	mortalityPercent := fmt.Sprintf("%0.0f", mortality*100)
 
 	fmt.Println("Average Mortality Rate:", mortalityPercent, "%")
