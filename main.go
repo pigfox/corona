@@ -1,19 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"text/tabwriter"
+)
 
 func main() {
 	mortality := 0.05
 	population := float64(327e6)
 
-	fmt.Println("Population:", fmt.Sprintf("%6.2f", population))
-	fmt.Println("Mortality:", mortality*100, "%")
+	w := new(tabwriter.Writer)
+	w.Init(os.Stdout, 8, 8, 0, '\t', 0)
+
+	defer w.Flush()
+
+	fmt.Println("US Population:", fmt.Sprintf("%6.0f", population))
+	mortalityPercent := fmt.Sprintf("%0.0f", mortality*100)
+
+	fmt.Println("Average Mortality Rate:", mortalityPercent, "%")
+
+	fmt.Fprintf(w, "\n %s\t%s\t", "Infection\nprobability %", "#Dead")
 
 	for probability := float64(0.0); probability <= 100; probability += 5 {
-		percent := fmt.Sprintf("%0.2f", probability)
-		fmt.Print("With infection probability of:", percent, "%")
-
-		dead := fmt.Sprintf("%6.2f", population*probability/100*mortality)
-		fmt.Println(" Number dead:", dead)
+		dead := population * probability / 100 * mortality
+		//fmt.Println(" Number dead:", dead)
+		fmt.Fprintf(w, "\n %0.2f\t%6.0f\t", probability, dead)
 	}
 }
