@@ -1,5 +1,5 @@
 # Corona
-Population: 327000000
+Population: 327000000  
 Average Mortality Rate: 1.30 %
 
 | % Population Infection Probability | Number Dead |
