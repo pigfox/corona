@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"regexp"
+	"strconv"
 	"text/tabwriter"
 )
 
@@ -25,11 +27,23 @@ func main() {
 
 	fmt.Println("Average Mortality Rate:", mortalityPercent, "%")
 
-	fmt.Fprintf(w, "\n%s\t%s\t%s\t", "%Population\nInfection\nProbability", " | ", "Number Dead")
+	fmt.Fprintf(w, "\n%s\t%s\t%s\t", "% Population Infection Probability", " | ", "Number Dead")
 
 	//Iterate over probabilities to calculate number of dead
 	for probability := float64(0.0); probability <= 100; probability += 5 {
-		dead := population * probability / 100 * mortality
-		fmt.Fprintf(w, "\n%2.f\t%s\t%9.f\t", probability, " | ", dead)
+		d := fmt.Sprintf("%6.0f", population*probability/100*mortality)
+		dead, _ := strconv.Atoi(d)
+		deadStr := formatCommas(dead)
+		fmt.Fprintf(w, "\n%2.f\t%s\t%s\t", probability, " | ", deadStr)
 	}
+}
+
+func formatCommas(num int) string {
+	str := fmt.Sprintf("%d", num)
+	re := regexp.MustCompile("(\\d+)(\\d{3})")
+	for n := ""; n != str; {
+		n = str
+		str = re.ReplaceAllString(str, "$1,$2")
+	}
+	return str
 }
