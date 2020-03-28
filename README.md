@@ -2,7 +2,7 @@
 Population: 327000000
 Average Mortality Rate: 1.30 %
 
-| %Population Infection Probability | Number Dead |
+| % Population Infection Probability | Number Dead |
 |-------------|------------|
 | 0         | 0     |
 | 5         | 212550 |
